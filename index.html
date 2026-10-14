@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabInAPocket (Sketch2Sim) | Vernacular STEM & Code Workbench</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP COMMAND HEADER -->
+  <header>
+    <div class="brand-wrap">
+      <span class="brand">🔬 LabInAPocket <small>(Sketch2Sim)</small></span>
+      <span class="tagline">Turning Every ₹5 Paper Notebook into a Live Vernacular Lab</span>
+    </div>
+    <div class="header-controls">
+      <input type="password" id="apiKey" placeholder="🔑 Paste Gemini API Key (For Live Photos)">
+      <select id="langSelect" onchange="updateTranscript()">
+        <option value="te-IN">తెలుగు (Telugu)</option>
+        <option value="hi-IN">हिन्दी (Hindi)</option>
+        <option value="ta-IN">தமிழ் (Tamil)</option>
+        <option value="en-IN">English</option>
+      </select>
+      <span id="sizeBadge" class="badge">⚡ 2G Payload: 1.95 KB</span>
+    </div>
+  </header>
+
+  <!-- MAIN SPLIT-SCREEN WORKBENCH -->
+  <main class="grid">
+
+    <!-- LEFT PANEL: STEP 1 & STEP 2 (DRAW, SNAP & SPATIAL GROUNDING) -->
+    <section class="card">
+      <h3>📓 Step 1 & 2: Notebook Capture & Spatial Grounding</h3>
+
+      <!-- Built-in Offline Hackathon Presets -->
+      <div class="row">
+        <select id="presetSelect" onchange="loadPreset()">
+          <option value="cliff">Preset 1: Physics — Cliff Projectile Vector Bug</option>
+          <option value="circuit">Preset 2: Electronics — Short-Circuited Bulb Bug</option>
+          <option value="loop">Preset 3: C / Python — Array Loop Off-By-One Bug</option>
+        </select>
+        <button class="btn-preset" onclick="loadPreset()">⚡ Load Instant Demo</button>
+      </div>
+
+      <!-- Live Camera / Photo Upload -->
+      <div class="upload-bar">
+        <input type="file" id="photoInput" accept="image/*" capture="environment">
+        <button class="btn-live" id="analyzeBtn" onclick="analyzeLivePhoto()">📸 Analyze Real Photo (Gemini)</button>
+      </div>
+
+      <!-- Notebook Canvas with Red/Green Coordinate Boxes -->
+      <canvas id="sketchCanvas" width="600" height="360"></canvas>
+
+      <!-- Extracted Handwritten Variables -->
+      <div id="varsBox" class="info-box vars-card"></div>
+    </section>
+
+    <!-- RIGHT PANEL: STEP 3, 4 & 5 (RED/GREEN SANDBOX, VOICE TUTOR & OFFLINE CARTRIDGE) -->
+    <section class="card">
+      <div class="panel-header">
+        <h3 id="topicTitle">⚡ Step 3: Live Interactive Sandbox</h3>
+        <div class="action-btns">
+          <button class="btn-voice" onclick="speakVoice()">🔊 Bilingual Audio Tutor</button>
+          <button class="btn-export" onclick="downloadCartridge()">📥 Save WhatsApp Cartridge (&lt;5KB)</button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Error & Socratic Gate -->
+      <div id="errorBox" class="info-box error-card"></div>
+      <div id="voiceTranscript" class="info-box voice-card"></div>
+      <div id="socraticBox" class="info-box socratic-card"></div>
+
+      <!-- Live Compiled HTML5 Simulation Sandbox -->
+      <iframe id="simFrame" title="Interactive Simulation Sandbox"></iframe>
+
+      <!-- Technical Proof Drawer for Hackathon Judges -->
+      <details class="proof-drawer">
+        <summary>🔍 Judge Technical Proof: View Enforced Gemini 2.5 Flash JSON Blueprint</summary>
+        <pre id="jsonView"></pre>
+      </details>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
